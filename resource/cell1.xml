@@ -7,8 +7,8 @@
     <cellId>1</cellId>
     <nDMRSTypeAPos>2</nDMRSTypeAPos>
     <nPhyCellId>11</nPhyCellId>
-    <nDLBandwidth>100</nDLBandwidth>
-    <nULBandwidth>100</nULBandwidth>
+    <nDLBandwidth>999</nDLBandwidth>
+    <nULBandwidth></nULBandwidth>
     <nDLAbsFrePointA>4800720</nDLAbsFrePointA>
     <nULAbsFrePointA>4800720</nULAbsFrePointA>
     <nDLFftSize>4096</nDLFftSize>
