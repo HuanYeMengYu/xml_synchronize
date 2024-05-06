@@ -5,7 +5,7 @@
 <CellConfig>
     <version>23.07</version>
     <cellId>2</cellId>
-    <nDMRSTypeAPos>2</nDMRSTypeAPos>
+    <nDMRSTypeAPos>29999999999999999999</nDMRSTypeAPos>
     <nPhyCellId>12</nPhyCellId>
     <nDLBandwidth>100</nDLBandwidth>
     <nULBandwidth>100</nULBandwidth>
@@ -255,4 +255,3 @@
     <Cell_Identity>1</Cell_Identity>
     <Global_gNB_ID>1</Global_gNB_ID>
 </CellConfig>
-

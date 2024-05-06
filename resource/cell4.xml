@@ -4,9 +4,9 @@
 <!--                                                                                         -->
 <CellConfig>
     <version>23.07</version>
-    <cellId>1</cellId>
-    <nDMRSTypeAPos>2</nDMRSTypeAPos>
-    <nPhyCellId>11</nPhyCellId>
+    <cellId>4</cellId>
+    <nDMRSTypeAPos>29999999999999999999</nDMRSTypeAPos>
+    <nPhyCellId>14</nPhyCellId>
     <nDLBandwidth>100</nDLBandwidth>
     <nULBandwidth>100</nULBandwidth>
     <nDLAbsFrePointA>4800720</nDLAbsFrePointA>
@@ -37,7 +37,7 @@
         <nPrachFreqStart>19</nPrachFreqStart>
         <nPrachFdm>1</nPrachFdm>
         <nPrachSsbRach>3</nPrachSsbRach>
-        <nPrachNrofRxRU>2</nPrachNrofRxRU>qweqwe
+        <nPrachNrofRxRU>2</nPrachNrofRxRU>
     </prachCfg>
     <ssbCfg>
         <nSSBMask>1</nSSBMask>
@@ -252,6 +252,6 @@
         <spsperiodicity>10</spsperiodicity>
         <spsrbSize>3</spsrbSize>
     </SemiPersistentScheduling>
-    <Cell_Identity>0</Cell_Identity>
-    <Global_gNB_ID>0</Global_gNB_ID>
+    <Cell_Identity>3</Cell_Identity>
+    <Global_gNB_ID>3</Global_gNB_ID>
 </CellConfig>

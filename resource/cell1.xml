@@ -5,10 +5,10 @@
 <CellConfig>
     <version>23.07</version>
     <cellId>1</cellId>
-    <nDMRSTypeAPos>2</nDMRSTypeAPos>
+    <nDMRSTypeAPos>29999999999999999999</nDMRSTypeAPos>
     <nPhyCellId>11</nPhyCellId>
-    <nDLBandwidth>999</nDLBandwidth>
-    <nULBandwidth></nULBandwidth>
+    <nDLBandwidth>100</nDLBandwidth>
+    <nULBandwidth>100</nULBandwidth>
     <nDLAbsFrePointA>4800720</nDLAbsFrePointA>
     <nULAbsFrePointA>4800720</nULAbsFrePointA>
     <nDLFftSize>4096</nDLFftSize>

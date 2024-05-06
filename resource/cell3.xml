@@ -4,10 +4,10 @@
 <!--                                                                                         -->
 <CellConfig>
     <version>23.07</version>
-    <cellId>1</cellId>
-    <nDMRSTypeAPos>2</nDMRSTypeAPos>
-    <nPhyCellId>11</nPhyCellId>
-    <nDLBandwidth>999</nDLBandwidth>
+    <cellId>3</cellId>
+    <nDMRSTypeAPos>29999999999999999999</nDMRSTypeAPos>
+    <nPhyCellId>13</nPhyCellId>
+    <nDLBandwidth>100</nDLBandwidth>
     <nULBandwidth>100</nULBandwidth>
     <nDLAbsFrePointA>4800720</nDLAbsFrePointA>
     <nULAbsFrePointA>4800720</nULAbsFrePointA>
@@ -37,7 +37,7 @@
         <nPrachFreqStart>19</nPrachFreqStart>
         <nPrachFdm>1</nPrachFdm>
         <nPrachSsbRach>3</nPrachSsbRach>
-        <nPrachNrofRxRU>2</nPrachNrofRxRU>qweqwe
+        <nPrachNrofRxRU>2</nPrachNrofRxRU>
     </prachCfg>
     <ssbCfg>
         <nSSBMask>1</nSSBMask>
@@ -226,7 +226,7 @@
         <winSizeDrb>2048</winSizeDrb>
     </rlcAmCfg>
     <!-- 1:enable DSA for HW memcpy. 0:disable DSA for SW memcpy -->
-    <enableDSA>0</enableDSA>
+     <enableDSA>0</enableDSA>
     <!-- 1:enable for UL SU MiMO. 0: diable for UL MU MIMO -->
     <enableUlHarq>1</enableUlHarq>
     <enableDlHarq>1</enableDlHarq>
@@ -252,6 +252,6 @@
         <spsperiodicity>10</spsperiodicity>
         <spsrbSize>3</spsrbSize>
     </SemiPersistentScheduling>
-    <Cell_Identity>0</Cell_Identity>
-    <Global_gNB_ID>0</Global_gNB_ID>
+    <Cell_Identity>2</Cell_Identity>
+    <Global_gNB_ID>2</Global_gNB_ID>
 </CellConfig>
