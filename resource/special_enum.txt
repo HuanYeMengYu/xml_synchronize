@@ -1,4 +1,4 @@
-cellId
-nPhyCellId
-Cell_Identity
-Global_gNB_ID
+nDMRSTypeAPos
+slotCfg0
+nPrachConfIdx
+nMimoMode
