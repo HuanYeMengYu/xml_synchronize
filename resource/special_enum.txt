@@ -1,4 +1,0 @@
-nDMRSTypeAPos
-slotCfg0
-nPrachConfIdx
-nMimoMode

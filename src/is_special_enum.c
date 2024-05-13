@@ -18,4 +18,3 @@ bool is_special_enum(const xmlChar* name, const char* special_enum){
     fclose(file);
     return false;
 }
-

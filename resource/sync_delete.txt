@@ -1,0 +1,4 @@
+nDLBandwidth
+slotCfg0
+prachCfg
+dlmassiveMIMO

@@ -5,7 +5,7 @@
 <CellConfig>
     <version>23.07</version>
     <cellId>4</cellId>
-    <nDMRSTypeAPos>666</nDMRSTypeAPos>
+    <nDMRSTypeAPos>2</nDMRSTypeAPos>
     <nPhyCellId>14</nPhyCellId>
     <nDLBandwidth>100</nDLBandwidth>
     <nULBandwidth>100</nULBandwidth>
@@ -23,13 +23,13 @@
     <nSubcCommon>1</nSubcCommon>
     <nCyclicPrefix>0</nCyclicPrefix>
     <nTddPeriod>5</nTddPeriod>
-    <slotCfg0>6,6,6,0,0,0,0,0,0,0,0,0,0,0</slotCfg0>
+    <slotCfg0>0,0,0,0,0,0,0,0,0,0,0,0,0,0</slotCfg0>
     <slotCfg1>0,0,0,0,0,0,0,0,0,0,0,0,0,0</slotCfg1>
     <slotCfg2>0,0,0,0,0,0,0,0,0,0,0,0,0,0</slotCfg2>
     <slotCfg3>0,0,0,0,0,0,0,0,0,0,0,2,2,1</slotCfg3>
     <slotCfg4>1,1,1,1,1,1,1,1,1,1,1,1,1,1</slotCfg4>
     <prachCfg>
-        <nPrachConfIdx>666</nPrachConfIdx>
+        <nPrachConfIdx>159</nPrachConfIdx>
         <nPrachSubcSpacing>1</nPrachSubcSpacing>
         <nPrachZeroCorrConf>6</nPrachZeroCorrConf>
         <nPrachRestrictSet>0</nPrachRestrictSet>
@@ -76,7 +76,7 @@
     <massiveMIMO>
         <dlmassiveMIMO>
             <!-- 0:SU 1:ZFS 2:BFS 3:CUS 4:ZFS CPX 5:BFS CPX -->
-            <nMimoMode>666</nMimoMode>
+            <nMimoMode>0</nMimoMode>
             <!-- DL SU MIMO Max layer of cell is 4. max 4 layer per UE. DL MU MIMO max layer of cell is 16, max 1 layer per UE-->
             <!--nMaxLayer is max dl layer of cell-->
             <nMaxLayer>4</nMaxLayer>
@@ -255,3 +255,4 @@
     <Cell_Identity>3</Cell_Identity>
     <Global_gNB_ID>3</Global_gNB_ID>
 </CellConfig>
+
