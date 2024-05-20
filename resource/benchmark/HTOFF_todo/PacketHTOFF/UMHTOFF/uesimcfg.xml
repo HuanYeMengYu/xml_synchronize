@@ -1,0 +1,374 @@
+<?xml version="1.0"?>
+<!--                                                                                         -->
+<!--   <COPYRIGHT_TAG>                                                                       -->
+<!--                                                                                         -->
+<UeSimConfig>
+    <version>23.07</version>
+
+    <Api>
+        <wls_dev_name>wls0</wls_dev_name>
+        <!-- MAC managed WLS Memory size. This is used for all API buffer allocations -->
+        <wlsMacMemorySize>0x3EA80000</wlsMacMemorySize>
+        <!-- L1 managed WLS Memory size. This is used for SRS weight storage. For 64x64 usecase and 6 cells (with 512 users per cell) use 0x18000000 -->
+        <wlsPhyMemorySize>0x0</wlsPhyMemorySize>
+    </Api>
+
+    <!-- This section defines all DPDK related parameters used for DPDK initialization -->
+    <DPDK>
+        <!--  name of DPDK memory zone, needs to align between primary and secondary process -->
+        <dpdkFilePrefix>gnb0</dpdkFilePrefix>
+        <!--  DPDK memory size allocated from hugepages [MB]  [default: 2048] -->
+        <dpdkMemorySize>14436</dpdkMemorySize>
+        <!--  DPDK IOVA Mode used for DPDK initialization. If 0, then PA mode. Else VA Mode -->
+        <dpdkIovaMode>0</dpdkIovaMode>
+        <!--  DPDK IOVA Mode used for DPDK initialization. If 0, then PA mode. Else VA Mode -->
+        <DDPQueueConfig>
+            <ddpQueNum>1</ddpQueNum>
+            <ddpQueId0>0</ddpQueId0>
+            <ddpQueId1>0</ddpQueId1>
+        </DDPQueueConfig>
+        <FlowConfig>
+            <FlowNum>0</FlowNum>
+            <!-- flow0 config -->
+            <Flow0>
+                <Flow0Egress>0</Flow0Egress>
+                <Flow0Ingress>1</Flow0Ingress>
+                <!-- GTP:v_pt_rsv_flags, msg_type, msg_len, teid -->
+                <Flow0GTPSpec>0x0, 0x0, 0x0, 0x07000000</Flow0GTPSpec>
+                <Flow0GTPMask>0x0, 0x0, 0x0, 0xff000000</Flow0GTPMask>
+                <!-- the Index should be equal to the one in L2 maccfg.xml -->
+                <Flow0QueueIndex>1</Flow0QueueIndex>
+            </Flow0>
+            <!-- flow1 config -->
+            <Flow1>
+                <Flow1Egress>0</Flow1Egress>
+                <Flow1Ingress>1</Flow1Ingress>
+                <!-- GTP:v_pt_rsv_flags, msg_type, msg_len, teid -->
+                <Flow1GTPSpec>0x0, 0x0, 0x0, 0x05000000</Flow1GTPSpec>
+                <Flow1GTPMask>0x0, 0x0, 0x0, 0xff000000</Flow1GTPMask>
+                <!-- the Index should be equal to the one in L2 maccfg.xml -->
+                <Flow1QueueIndex>2</Flow1QueueIndex>
+            </Flow1>
+        </FlowConfig>
+        <GtpuResource>
+            <pcieAddr>0000:4b:0a.1</pcieAddr>
+            <mempoolName>fast_pkt1</mempoolName>
+        </GtpuResource>
+
+        <!-- DSA device info. Should be configured bufore use. -->
+        <DSAResource>
+            <enableDSA>0</enableDSA>
+            <DSANum>4</DSANum>
+            <DSAAddr0>6a:01.0</DSAAddr0>
+            <DSAAddr1>6f:01.0</DSAAddr1>
+            <DSAAddr2>74:01.0</DSAAddr2>
+            <DSAAddr3>79:01.0</DSAAddr3>
+            <DSAAddr4>e7:01.0</DSAAddr4>
+            <DSAAddr5>ec:01.0</DSAAddr5>
+            <DSAAddr6>f1:01.0</DSAAddr6>
+            <DSAAddr7>f6:01.0</DSAAddr7>
+        <DSAResource>
+
+        <DPDKSharedResource>
+            <!-- number of the set of shared ports and corresponding memory, maximum 4, if none, set to 0 -->
+            <numSharedResource>2</numSharedResource>
+
+            <!--  Shared Resource Config 0 -->
+            <SharedResource0>
+                <!-- DPDK memory pool name, if don't want to init memory pool, set name to 0 -->
+                <mempoolName0>fast_pkt</mempoolName0>
+                <!-- The number of elements in the mempool. The optimum size for a mempool is when n is a power of two minus one: n = (2^q - 1) -->
+                <numElement0>131071</numElement0>
+                <!-- DDP flag[0 - disable, 1 - enable] -->
+                <enableDDP0>0</enableDDP0>
+                <!-- The size of each element -->
+                <elementSize0>2048</elementSize0>
+                <!-- The size of the private data appended after the mempool structure-->
+                <privateDataSize0>64</privateDataSize0>
+                <!-- DPDK ring pool name, if don't want to init ring, set name to 0 -->
+                <ringName0>0</ringName0>
+                <!-- The size of the ring (must be a power of 2) -->
+                <ringSize0>1024</ringSize0>
+                <!-- DPDK port pci-e address, if don't want to init port, set number to 0 -->
+                <portAddr0>0000:4b:0a.0</portAddr0>
+                <!-- DPDK port socket index -->
+                <portSocketIdx0>0</portSocketIdx0>
+                <!-- Number of Tx queue -->
+                <txQueueNum0>1</txQueueNum0>
+                <!-- Tx queue description -->
+                <txQueueDesc0>4096</txQueueDesc0>
+                <!-- Number of Rx queue -->
+                <rxQueueNum0>1</rxQueueNum0>
+                <!-- Rx queue description -->
+                <rxQueueDesc0>4096</rxQueueDesc0>
+                <!-- Max payload size, if larger than 1500Bytes, Jumbo frame will be enabled -->
+                <maxPayloadSize0>9728</maxPayloadSize0>
+                <!-- DPDK crypt QAT virtual pci-e address -->
+                <dpdkQatAddr00>0000:33:01.0</dpdkQatAddr00>
+                <!-- DPDK crypt QAT virtual pci-e address -->
+                <dpdkQatAddr10>0000:33:01.1</dpdkQatAddr10>
+                <!-- DPDK crypt QAT virtual pci-e address -->
+                <dpdkQatAddr20>0000:33:01.2</dpdkQatAddr20>
+                <!-- DPDK crypt QAT virtual pci-e address-->
+                <dpdkQatAddr30>0000:33:01.3</dpdkQatAddr30>
+            </SharedResource0>
+
+            <!--  Shared Resource Config 1 -->
+            <SharedResource1>
+                <!-- DPDK memory pool name, if don't want to init memory pool, set name to 0 -->
+                <mempoolName1>fast_pkt1</mempoolName1>
+                <!-- The number of elements in the mempool. The optimum size for a mempool is when n is a power of two minus one: n = (2^q - 1) -->
+                <numElement1>131071</numElement1>
+                <!-- DDP flag[0 - disable, 1 - enable] -->
+                <enableDDP1>0</enableDDP1>
+                <!-- The size of each element -->
+                <elementSize1>2048</elementSize1>
+                <!-- The size of the private data appended after the mempool structure-->
+                <privateDataSize1>64</privateDataSize1>
+                <!-- DPDK ring pool name, if don't want to init ring, set name to 0 -->
+                <ringName1>0</ringName1>
+                <!-- The size of the ring (must be a power of 2) -->
+                <ringSize1>1024</ringSize1>
+                <!-- DPDK port pci-e address, if don't want to init port, set number to 0 -->
+                <portAddr1>0000:4b:0a.1</portAddr1>
+                <!-- DPDK port socket index -->
+                <portSocketIdx1>0</portSocketIdx1>
+                <!-- Number of Tx queue -->
+                <txQueueNum1>1</txQueueNum1>
+                <!-- Tx queue description -->
+                <txQueueDesc1>4096</txQueueDesc1>
+                <!-- Number of Rx queue -->
+                <rxQueueNum1>1</rxQueueNum1>
+                <!-- Rx queue description -->
+                <rxQueueDesc1>4096</rxQueueDesc1>
+                <!-- Max payload size, if larger than 1500Bytes, Jumbo frame will be enabled -->
+                <maxPayloadSize1>9728</maxPayloadSize1>
+                <!-- DPDK crypt QAT virtual pci-e address -->
+                <dpdkQatAddr01>0000:33:01.4</dpdkQatAddr01>
+                <!-- DPDK crypt QAT virtual pci-e address -->
+                <dpdkQatAddr11>0000:33:01.5</dpdkQatAddr11>
+                <!-- DPDK crypt QAT virtual pci-e address -->
+                <dpdkQatAddr21>0000:33:01.6</dpdkQatAddr21>
+                <!-- DPDK crypt QAT virtual pci-e address-->
+                <dpdkQatAddr31>0000:33:01.7</dpdkQatAddr31>
+            </SharedResource1>
+
+            <!--  Shared Resource Config 2 -->
+            <SharedResource2>
+                <!-- DPDK memory pool name, if don't want to init memory pool, set name to 0 -->
+                <mempoolName2>clone_pkt</mempoolName2>
+                <!-- The number of elements in the mempool. The optimum size for a mempool is when n is a power of two minus one: n = (2^q - 1) -->
+                <numElement2>65535</numElement2>
+                <!-- DDP flag[0 - disable, 1 - enable] -->
+                <enableDDP2>0</enableDDP2>
+                <!-- The size of each element -->
+                <elementSize2>2048</elementSize2>
+                <!-- The size of the private data appended after the mempool structure-->
+                <privateDataSize2>64</privateDataSize2>
+                <!-- DPDK ring pool name, if don't want to init ring, set name to 0 -->
+                <ringName2>0</ringName2>
+                <!-- The size of the ring (must be a power of 2) -->
+                <ringSize2>1024</ringSize2>
+                <!-- DPDK port pci-e address, if don't want to init port, set number to 0 -->
+                <portAddr2>0</portAddr2>
+                <!-- DPDK port socket index -->
+                <portSocketIdx2>0</portSocketIdx2>
+                <!-- Number of Tx queue -->
+                <txQueueNum2>1</txQueueNum2>
+                <!-- Tx queue description -->
+                <txQueueDesc2>512</txQueueDesc2>
+                <!-- Number of Rx queue -->
+                <rxQueueNum2>1</rxQueueNum2>
+                <!-- Rx queue description -->
+                <rxQueueDesc2>128</rxQueueDesc2>
+                <!-- Max payload size, if larger than 1500Bytes, Jumbo frame will be enabled -->
+                <maxPayloadSize2>9728</maxPayloadSize2>
+                <!-- DPDK crypt QAT virtual pci-e address -->
+                <dpdkQatAddr02>0000:33:01.0</dpdkQatAddr02>
+                <!-- DPDK crypt QAT virtual pci-e address -->
+                <dpdkQatAddr12>0000:33:01.1</dpdkQatAddr12>
+                <!-- DPDK crypt QAT virtual pci-e address -->
+                <dpdkQatAddr22>0000:33:01.2</dpdkQatAddr22>
+                <!-- DPDK crypt QAT virtual pci-e address-->
+                <dpdkQatAddr32>0000:33:01.3</dpdkQatAddr32>
+            </SharedResource2>
+
+            <!--  Shared Resource Config 3 -->
+            <SharedResource3>
+                <!-- DPDK memory pool name, if don't want to init memory pool, set name to 0 -->
+                <mempoolName3>pdu3</mempoolName3>
+                <!-- The number of elements in the mempool. The optimum size for a mempool is when n is a power of two minus one: n = (2^q - 1) -->
+                <numElement3>65535</numElement3>
+                <!-- DDP flag[0 - disable, 1 - enable] -->
+                <enableDDP3>0</enableDDP3>
+                <!-- The size of each element -->
+                <elementSize3>2048</elementSize3>
+                <!-- The size of the private data appended after the mempool structure-->
+                <privateDataSize3>64</privateDataSize3>
+                <!-- DPDK ring pool name, if don't want to init ring, set name to 0 -->
+                <ringName3>sdu3</ringName3>
+                <!-- The size of the ring (must be a power of 2) -->
+                <ringSize3>1024</ringSize3>
+                <!-- DPDK port pci-e address, if don't want to init port, set number to 0 -->
+                <portAddr3>0</portAddr3>
+                <!-- DPDK port socket index -->
+                <portSocketIdx3>0</portSocketIdx3>
+                <!-- Number of Tx queue -->
+                <txQueueNum3>1</txQueueNum3>
+                <!-- Tx queue description -->
+                <txQueueDesc3>512</txQueueDesc3>
+                <!-- Number of Rx queue -->
+                <rxQueueNum3>1</rxQueueNum3>
+                <!-- Rx queue description -->
+                <rxQueueDesc3>128</rxQueueDesc3>
+                <!-- Max payload size, if larger than 1500Bytes, Jumbo frame will be enabled -->
+                <maxPayloadSize3>9728</maxPayloadSize3>
+                <!-- DPDK crypt QAT virtual pci-e address -->
+                <dpdkQatAddr03>0000:33:01.0</dpdkQatAddr03>
+                <!-- DPDK crypt QAT virtual pci-e address -->
+                <dpdkQatAddr13>0000:33:01.1</dpdkQatAddr13>
+                <!-- DPDK crypt QAT virtual pci-e address -->
+                <dpdkQatAddr23>0000:33:01.2</dpdkQatAddr23>
+                <!-- DPDK crypt QAT virtual pci-e address-->
+                <dpdkQatAddr33>0000:33:01.3</dpdkQatAddr33>
+            </SharedResource3>
+        </DPDKSharedResource>
+    </DPDK>
+
+    <!-- CPU Binding to Application Threads -->
+    <Threads>
+        <!-- System Threads (Single core id value): Core, priority, Policy [0: SCHED_FIFO 1: SCHED_RR] -->
+        <systemThread>2, 0, 0</systemThread>
+
+        <!-- Timer Thread (Single core id value): Core, priority, Policy [0: SCHED_FIFO 1: SCHED_RR] -->
+        <timingThread>19, 96, 0</timingThread>
+        <!-- Urllc Thread (Single core id value): Core, priority, Policy [0: SCHED_FIFO 1: SCHED_RR] -->
+        <urllcThread>16, 96, 0</urllcThread>
+
+    </Threads>
+
+    <BbuPoolConfig>
+        <!-- If set to 1, BBU Pool cores, return control to kernel after task is completed. Else it will always be in user space without going to sleep -->
+        <!-- It is mainly used when setting core to harware sleep mode and latency of sleep is not very deterministic -->
+        <BbuPoolSleepEnable>1</BbuPoolSleepEnable>
+
+        <!-- Priority Of All BBU Cores -->
+        <BbuPoolThreadCorePriority>94</BbuPoolThreadCorePriority>
+        <!-- Policy for All BBU Cores [0: SCHED_FIFO 1: SCHED_RR] -->
+        <BbuPoolThreadCorePolicy>0</BbuPoolThreadCorePolicy>
+
+        <!-- BBUPool Worker Thread Cores (Bit mask of all cores that are used for BBU Pool in Decimal or Hex [needs to start with "0x"]) -->
+        <BbuPoolThreadCoreMask0>0x3F0</BbuPoolThreadCoreMask0>
+        <BbuPoolThreadCoreMask1>0x0</BbuPoolThreadCoreMask1>
+        <BbuPoolThreadCoreMask2>0x0</BbuPoolThreadCoreMask2>
+        <BbuPoolThreadCoreMask3>0x0</BbuPoolThreadCoreMask3>
+
+        <!-- The number of elements per queue (for new scheduler only). Values need to be comma seperated and a max of 10 queues. -->
+        <eBbuPoolNumQueue>1024, 1024, 1024, 1024</eBbuPoolNumQueue>
+
+        <!-- Number of ping pong context to use for scheduler. THis is needed mainly for TDD scenarios so UL is prioritized over DL. Range [1-4] -->
+        <eBbuPoolNumContext>1</eBbuPoolNumContext>
+
+        <!-- Maximum Number of contexts to fetch by each consumer thread. This is used only if eBbuPoolNumContext>1. Range [1-eBbuPoolNumContext] -->
+        <eBbuPoolMaxContextFetch>1</eBbuPoolMaxContextFetch>
+
+        <!-- Enable internal print of statistics from New Scheduler Library. 0: Off, 1: On. -->
+        <eBbuPoolPrintFlag>0</eBbuPoolPrintFlag>
+
+        <!-- Enable FEC Only Task List for 5GNR L1 Application. This is used to test the FEC Enq/Deq Operations with hardware. 0: Off, 1: On. -->
+        <eBbuPoolFecOnlyList>0</eBbuPoolFecOnlyList>
+
+        <!-- Thread usleep period (us), veriable unit uint8_t the max value is 256, 0 is default value for 10us sleep-->
+        <nUsleepPeriod>0</nUsleepPeriod>
+
+        <!-- Thread SuspendPeriod period (us) veriable unit uint16_t the max value is 65536, 0 is default value for 550us sleep-->
+        <nSuspendPeriod>0</nSuspendPeriod>
+    </BbuPoolConfig>
+    <!--  cell add/delete one by one mode [0 - inactive, 1 - active]-->
+    <CellDynOpr>0</CellDynOpr>
+    <!--  IOT with CUUP [0 - inactive, 1 - active]-->
+    <IotWithCU>0</IotWithCU>
+    <UE>
+        <numCells>4</numCells>
+        <nNumDummyUe>400</nNumDummyUe>
+        <nNumDummyUeUrllc>64</nNumDummyUeUrllc>
+        <nNumDummyUeGbr1>0</nNumDummyUeGbr1>
+        <nNumDummyUeGbr2>0</nNumDummyUeGbr2>
+        <enableChecker>1</enableChecker>
+        <enableRlcAm>0</enableRlcAm>
+    </UE>
+
+    <ulBlerTarget>
+        <!-- PUSCH DTX percentage -->
+        <puschDtxPct>0</puschDtxPct>
+        <!-- PUSCH CRC fail percentage -->
+        <puschNackPct>10</puschNackPct>
+        <!-- PUCCH DTX percentage -->
+        <pucchDtxPct>0</pucchDtxPct>
+        <!-- PUCCH CRC fail percentage -->
+        <pucchNackPct>1</pucchNackPct>
+    </ulBlerTarget>
+
+    <dlBlerTarget>
+        <!-- PDSCH CRC fail percentage -->
+        <pdschNackPct>10</pdschNackPct>
+    </dlBlerTarget>
+
+    <csirsCfg>
+        <pdschOverlap>0</pdschOverlap>
+    </csirsCfg>
+
+    <rlcAmCfg>
+        <snFieldLength>18</snFieldLength>
+        <tPollRetransmit>35</tPollRetransmit>
+        <pollPdu>32</pollPdu>
+        <pollByte>50000</pollByte>
+        <maxRetxThreshold>16</maxRetxThreshold>
+        <tReassembly>75</tReassembly>
+        <tStatusProhibit>50</tStatusProhibit>
+        <winSizeSrb>64</winSizeSrb>
+        <winSizeDrb>2048</winSizeDrb>
+    </rlcAmCfg>
+
+    <grpcAddress>localhost:50052</grpcAddress>
+
+    <PdcpConfig>
+        <snBit>12</snBit>
+        <discardTimer>0</discardTimer>
+        <outOfOrderDelivery>1</outOfOrderDelivery>
+        <!--  0: not configured, 1: configured  -->
+        <integerityConfigured>1</integerityConfigured>
+        <!--  DPDK crypto mode [0 - inactive, 1 - SW, 2 - QAT]-->
+        <cryptoMode>0</cryptoMode>
+        <!-- cipher algo 1:NULL  6:AES_CTR   12:SNOW3G  13:ZUC  -->
+        <ciphAlgo>13</ciphAlgo>
+        <!-- integrity alog, 1:NULL  3:AES_CMAC  19:SNOW3G  20:ZUC  -->
+        <intAlgo>20</intAlgo>
+        <ciphKey>11,22,33,44,55,66,77,88,99,aa,bb,cc,dd,ee,ff,00</ciphKey>
+        <intKey>11,22,33,44,55,66,77,88,99,aa,bb,cc,dd,ee,ff,00</intKey>
+    </PdcpConfig>
+
+    <ConfiguredGrant>
+        <!-- 0:CG disable, 1:CG type1, 2:CG type2, 3:Mixed CG type-->
+        <CGType>3</CGType>
+        <!-- unit is symbol in periodicity of 38331-->
+        <periodicity>140</periodicity>
+        <!-- L of RIV in 6.1.2.2.2 in 38214-->
+        <rbStart>224</rbStart>
+        <!-- L of RIV in 6.1.2.2.2 in 38214-->
+        <rbSize>3</rbSize>
+    </ConfiguredGrant>
+
+    <UlScheConfig>
+        <nMcs>27</nMcs>
+        <dmrsmaxLength>1</dmrsmaxLength>
+        <nMaxLayerUL>1</nMaxLayerUL>
+        <ulModulation>2</ulModulation>
+    </UlScheConfig>
+
+    <pdcchCfg>
+        <dciFormat>1</dciFormat>
+        <dciFormatUrllc>1</dciFormatUrllc>
+    </pdcchCfg>
+</UeSimConfig>
+

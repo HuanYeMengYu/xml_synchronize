@@ -1,4 +1,3 @@
-nDMRSTypeAPos 1
-slotCfg0 2
-nPrachConfIdx 3
-nMimoMode 4
+nDMRSTypeAPos
+slotCfg0
+nSSBMask

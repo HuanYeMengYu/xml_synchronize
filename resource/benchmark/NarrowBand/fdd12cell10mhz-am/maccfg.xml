@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<!--                                                                                         -->
+<!--   <COPYRIGHT_TAG>                                                                       -->
+<!--                                                                                         -->
+<MacConfig>
+    <version>23.07</version>
+
+    <Api>
+        <!--  Full path to wls device used for transport of MAC-PHY API (e.g. wls0 )-->
+        <wls_dev_name>wls0</wls_dev_name>
+        <phyBlockSize>172096</phyBlockSize>
+        <numBlockTypes>4</numBlockTypes>
+        <blockSize0>0x400</blockSize0>
+        <blockCount0>8192</blockCount0>
+        <blockSize1>0x8000</blockSize1>
+        <blockCount1>4096</blockCount1>
+        <blockSize2>0x10000</blockSize2>
+        <blockCount2>2048</blockCount2>
+        <blockSize3>0x2A800</blockSize3>
+        <blockCount3>512</blockCount3>
+    </Api>
+
+    <!-- This section defines all DPDK related parameters used for DPDK initialization -->
+    <DPDK>
+        <!--  name of DPDK memory zone, needs to align between primary and secondary process -->
+        <dpdkFilePrefix>gnb0</dpdkFilePrefix>
+        <!--  DPDK IOVA Mode used for DPDK initialization. If 0, then PA mode. Else VA Mode -->
+        <dpdkIovaMode>0</dpdkIovaMode>
+    </DPDK>
+
+    <DPDKSharedResource>
+        <PciF1uAddr>0000:b1:02.0</PciF1uAddr>
+        <mempoolName>fast_pkt</mempoolName>
+    </DPDKSharedResource>
+
+    <!-- CPU Binding to Application Threads -->
+    <Threads>
+        <!-- System Threads (Single core id value): Core, priority, Policy [0: SCHED_FIFO 1: SCHED_RR] -->
+        <systemThread>3, 0, 0</systemThread>
+
+        <!-- IO Thread (Single core id value): Core, priority, Policy [0: SCHED_FIFO 1: SCHED_RR] -->
+        <macIoThread>18, 96, 0</macIoThread>
+
+        <!-- URLLC Thread (Single core id value): Core, priority, Policy [0: SCHED_FIFO 1: SCHED_RR] -->
+        <urllcThread>17, 96, 0</urllcThread>
+
+        <!-- Control Agent Core Config -->
+        <ControlAgentThread>21, 96, 0</ControlAgentThread>
+    </Threads>
+
+    <BbuPoolConfig>
+        <!-- If set to 1, BBU Pool cores, return control to kernel after task is completed. Else it will always be in user space without going to sleep -->
+        <!-- It is mainly used when setting core to harware sleep mode and latency of sleep is not very deterministic -->
+        <BbuPoolSleepEnable>1</BbuPoolSleepEnable>
+
+        <!-- If set to 0, means use different ebbupools with L1, in such case need to avoid core overlapping. -->
+        <!-- Otherwise use the same ebbupool with L1 in DU mode, in such case the core number should consider L1 workload and be identical with L1 config-->
+        <eBbuPoolSharedPool>1</eBbuPoolSharedPool>
+
+        <!-- Priority Of All BBU Cores -->
+        <BbuPoolThreadCorePriority>94</BbuPoolThreadCorePriority>
+        <!-- Policy for All BBU Cores [0: SCHED_FIFO 1: SCHED_RR] -->
+        <BbuPoolThreadCorePolicy>0</BbuPoolThreadCorePolicy>
+
+        <!-- BBUPool Worker Thread Cores (Bit mask of all cores that are used for BBU Pool in Decimal or Hex [needs to start with "0x"]) -->
+        <BbuPoolThreadCoreMask0>0x1000</BbuPoolThreadCoreMask0>
+        <BbuPoolThreadCoreMask1>0x0000</BbuPoolThreadCoreMask1>
+        <BbuPoolThreadCoreMask2>0x0</BbuPoolThreadCoreMask2>
+        <BbuPoolThreadCoreMask3>0x0</BbuPoolThreadCoreMask3>
+        <!-- BBUPool Sch Filter CoreMask (Bit mask of all cores that are used for BBU Pool in Decimal or Hex [needs to start with "0x"]) -->
+        <BbuPoolSchFilterCoreMask0>0xFFFFFFFFFFFFFFFF</BbuPoolSchFilterCoreMask0>
+        <BbuPoolSchFilterCoreMask1>0xFFFFFFFFFFFFFFFF</BbuPoolSchFilterCoreMask1>
+        <BbuPoolSchFilterCoreMask2>0x0</BbuPoolSchFilterCoreMask2>
+        <BbuPoolSchFilterCoreMask3>0x0</BbuPoolSchFilterCoreMask3>
+        <!-- BBUPool Data Filter CoreMask (Bit mask of all cores that are used for BBU Pool in Decimal or Hex [needs to start with "0x"]) -->
+        <BbuPoolDataFilterCoreMask0>0xFFFFFFFFFFFFFFFF</BbuPoolDataFilterCoreMask0>
+        <BbuPoolDataFilterCoreMask1>0xFFFFFFFFFFFFFFFF</BbuPoolDataFilterCoreMask1>
+        <BbuPoolDataFilterCoreMask2>0x0</BbuPoolDataFilterCoreMask2>
+        <BbuPoolDataFilterCoreMask3>0x0</BbuPoolDataFilterCoreMask3>
+
+        <!-- The number of elements per queue (for new scheduler only). Values need to be comma seperated and a max of 10 queues. -->
+        <eBbuPoolNumQueue>1024, 1024, 1024, 1024</eBbuPoolNumQueue>
+
+        <!-- Number of ping pong context to use for scheduler. THis is needed mainly for TDD scenarios so UL is prioritized over DL. Range [1-4] -->
+        <eBbuPoolNumContext>1</eBbuPoolNumContext>
+
+        <!-- Maximum Number of contexts to fetch by each consumer thread. This is used only if eBbuPoolNumContext>1. Range [1-eBbuPoolNumContext] -->
+        <eBbuPoolMaxContextFetch>1</eBbuPoolMaxContextFetch>
+
+        <!-- Enable internal print of statistics from New Scheduler Library. 0: Off, 1: On. -->
+        <eBbuPoolPrintFlag>0</eBbuPoolPrintFlag>
+
+        <!-- Enable FEC Only Task List for 5GNR L1 Application. This is used to test the FEC Enq/Deq Operations with hardware. 0: Off, 1: On. -->
+        <eBbuPoolFecOnlyList>0</eBbuPoolFecOnlyList>
+
+        <!-- Thread usleep period (us), veriable unit uint8_t the max value is 256, 0 is default value for 10us sleep-->
+        <nUsleepPeriod>0</nUsleepPeriod>
+
+        <!-- Thread SuspendPeriod period (us) veriable unit uint16_t the max value is 65536, 0 is default value for 550us sleep-->
+        <nSuspendPeriod>0</nSuspendPeriod>
+    </BbuPoolConfig>
+    <PdcpConfig>
+        <snBit>12</snBit>
+        <discardTimer>0</discardTimer>
+        <outOfOrderDelivery>1</outOfOrderDelivery>
+        <!--  0: not configured, 1: configured  -->
+        <integerityConfigured>1</integerityConfigured>
+        <!--  DPDK crypto mode [0 - inactive, 1 - SW, 2 - QAT]-->
+        <cryptoMode>1</cryptoMode>
+        <!-- cipher algo 1:NULL  6:AES_CTR   12:SNOW3G  13:ZUC  -->
+        <ciphAlgo>13</ciphAlgo>
+        <!-- integrity alog, 1:NULL  3:AES_CMAC  19:SNOW3G  20:ZUC  -->
+        <intAlgo>20</intAlgo>
+        <ciphKey>11,22,33,44,55,66,77,88,99,aa,bb,cc,dd,ee,ff,00</ciphKey>
+        <intKey>11,22,33,44,55,66,77,88,99,aa,bb,cc,dd,ee,ff,00</intKey>
+    </PdcpConfig>
+    <!--  cell add/delete one by one mode [0 - inactive, 1 - active]-->
+    <CellDynOpr>0</CellDynOpr>
+    <CellConfig>
+        <numCell>12</numCell>
+        <cellConfigFile1>cell1.xml</cellConfigFile1>
+        <cellConfigFile2>cell2.xml</cellConfigFile2>
+        <cellConfigFile3>cell3.xml</cellConfigFile3>
+        <cellConfigFile4>cell4.xml</cellConfigFile4>
+        <cellConfigFile5>cell5.xml</cellConfigFile5>
+        <cellConfigFile6>cell6.xml</cellConfigFile6> 
+        <cellConfigFile7>cell7.xml</cellConfigFile7>
+        <cellConfigFile8>cell8.xml</cellConfigFile8>
+        <cellConfigFile9>cell9.xml</cellConfigFile9>
+        <cellConfigFile10>cell10.xml</cellConfigFile10>
+        <cellConfigFile11>cell11.xml</cellConfigFile11>
+        <cellConfigFile12>cell12.xml</cellConfigFile12> 
+    </CellConfig>
+    <tm500WA>0</tm500WA>
+    <FlowConfig>
+        <FlowNum>1</FlowNum>
+        <QueueId0>0</QueueId0>
+        <QueueId1>0</QueueId1>
+    </FlowConfig>
+    <!-- Power Saving config -->
+    <PowerSavingConfig>
+        <!--  0: not configured, 1: configured  -->
+        <powerSavingPstateSwitch>0</powerSavingPstateSwitch>
+        <powerSavingCstateSwitch>0</powerSavingCstateSwitch>
+        <powerSavingCstateTtiSwitch>0</powerSavingCstateTtiSwitch>
+        <powerSavingNumofRemainCores>0</powerSavingNumofRemainCores>
+        <grpcClientSwitch>0</grpcClientSwitch>
+        <grpcHostName>10.240.224.164</grpcHostName>
+        <grpcPort>9096</grpcPort>
+    </PowerSavingConfig>
+    <!-- F1AP switch -->
+    <DUControlSwitch>1</DUControlSwitch>
+    <!-- SCTP params -->
+    <DUName>gNB-DU-test</DUName>
+    <DUId>21</DUId>
+    <!-- RRC Version implemented by DU, just use the latest version for test now -->
+    <DURRCVer>16.6.0</DURRCVer>
+    <DUHostName>127.0.0.1</DUHostName>
+    <DUPort>7890</DUPort>
+    <CUName>gNB-CU-test</CUName>
+    <CUId>22</CUId>
+    <!-- RRC Version implemented by CU, just use the latest version for test now -->
+    <CURRCVer>16.6.0</CURRCVer>
+    <CUHostName>127.0.0.1</CUHostName>
+    <CUPort>7892</CUPort>
+    <alConfigFile>f1apAdaptLayerCfg.xml</alConfigFile>
+    <!--  0: E2 disable, 1: E2 enable  -->
+    <E2Enable>0</E2Enable>
+    <E2HostName>127.0.0.1</E2HostName>
+    <E2Port>10002</E2Port>
+    <!--  0: O1 disable, 1: O1 enable  -->
+    <O1Enable>0</O1Enable>
+    <O1HostName>127.0.0.1</O1HostName>
+    <O1Port>11002</O1Port>
+    <Global_gNB_ID>0</Global_gNB_ID>
+    <PLMN_ID>131485</PLMN_ID>
+    <gNB_DU_ID>0</gNB_DU_ID>
+</MacConfig>

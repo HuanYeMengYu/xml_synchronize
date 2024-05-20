@@ -1,4 +1,5 @@
 #include "../include/xml_synchronize.h"
+#include "../include/hash_map.h"
 
 // 检查两个节点结构是否相等
 int are_nodes_equal(xmlNode *node1, xmlNode *node2) {

@@ -1,4 +1,5 @@
 #include "../include/xml_synchronize.h"
+#include "../include/hash_map.h"
 #include <libxml2/libxml/tree.h>
 #include <stdio.h>
 
