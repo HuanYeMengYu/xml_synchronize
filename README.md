@@ -1,6 +1,3 @@
-- 程序参数解析
-- 文档
-
 # 基于libxml2库tree模块的xml文件同步工具
 
 [github仓库地址](https://github.com/HuanYeMengYu/xml_synchronize)
