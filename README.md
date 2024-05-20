@@ -35,7 +35,7 @@ cd libxml2-xxx
 
 成功生成配置文件：
 
-![img](https://diangroup.feishu.cn/space/api/box/stream/download/asynccode/?code=M2UxNmQ0YjdhNjJhMGE5ODQyNmUxM2M3NTJkY2E0YTFfOVc1SVZSaGdYNUtvU1JBUFpQVFJMeVNHd0hrRXdVSVJfVG9rZW46RkdMYWJZR1Vnb3B2cVV4TGFycGNsWXRObkpPXzE3MTYxODQ1MDA6MTcxNjE4ODEwMF9WNA)
+![img](https://diangroup.feishu.cn/space/api/box/stream/download/asynccode/?code=YThlODdiNGU0MDNjYTM1MTEyYjc0NmJmYTQwM2M5N2ZfVjJtZDdUMzB1dUhWWThnSlQ2QjRhaG0zVXZZUmJQUFlfVG9rZW46RkdMYWJZR1Vnb3B2cVV4TGFycGNsWXRObkpPXzE3MTYxODg1MjA6MTcxNjE5MjEyMF9WNA)
 
 然后你可以配置并构建库：
 
@@ -46,9 +46,9 @@ make
 
 成功构建库：
 
-![img](https://diangroup.feishu.cn/space/api/box/stream/download/asynccode/?code=OWI4NmYyYTUwYmZjOGJkYTI4MmIyYjc0YjZhN2I0NzRfU1BSamVROXJQdzBaV1VQbEJVbGZoYkVmTEtZRE5uNUNfVG9rZW46TUVBWWI4MnJJb01OSHp4dTBNaWNBU2VmbmhnXzE3MTYxODQ1MDA6MTcxNjE4ODEwMF9WNA)
+![img](https://diangroup.feishu.cn/space/api/box/stream/download/asynccode/?code=YjYyNDUwZmMwY2VhMzkzZDUxMGI4NGM2MDE3MWQzZjZfRHMyelZkeGRtZzMyVEFnVERHbUJuRTIxYTdPMFhBa0lfVG9rZW46TUVBWWI4MnJJb01OSHp4dTBNaWNBU2VmbmhnXzE3MTYxODg1MjA6MTcxNjE5MjEyMF9WNA)
 
-![img](https://diangroup.feishu.cn/space/api/box/stream/download/asynccode/?code=NTgwNmNkNzIyMzNhNTA3OTVkMDI4ZTgyODFhMDcxMWNfV2phU1h2REszMjB2SVdSbTkyWGZEZmRWQldpYzU5d3VfVG9rZW46RU5OUmJYcmhwb3Bwa1Z4Tk5jZ2NEaWdQbkNmXzE3MTYxODQ1MDA6MTcxNjE4ODEwMF9WNA)
+![img](https://diangroup.feishu.cn/space/api/box/stream/download/asynccode/?code=NTYzZGQzZmY0MjBmOTc3MjUwODhkOWQ0MzBmOGQwMGRfVVowa1o4TEFYSFdhOTN0T0hYRnBMRTdBdDVHVElrOWlfVG9rZW46RU5OUmJYcmhwb3Bwa1Z4Tk5jZ2NEaWdQbkNmXzE3MTYxODg1MjA6MTcxNjE5MjEyMF9WNA)
 
 现在你可以运行测试套件来检查正确性：
 
@@ -56,7 +56,7 @@ make
 make check
 ```
 
-![img](https://diangroup.feishu.cn/space/api/box/stream/download/asynccode/?code=MzVjMmE2NDlmZjcxOTI4NGZhNDNkN2JlMDQzOTVhN2JfTVdZV29xS2o2WjF2S2tqWWlwUEFxSTFjc3ppMnQ0RlNfVG9rZW46Vjdra2JnRXd6bzY2NDl4NGdUWWNYNkJQbmVjXzE3MTYxODQ1MDA6MTcxNjE4ODEwMF9WNA)
+![img](https://diangroup.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWIyOTBkOGU0OGM0NGVlMjE2ZjQxNjUzNmI5OWU2Y2RfUHBqMjdCdHBzeVlHUExOa0lqWjVla1RJaGxzTnFqbmxfVG9rZW46Vjdra2JnRXd6bzY2NDl4NGdUWWNYNkJQbmVjXzE3MTYxODg1MjA6MTcxNjE5MjEyMF9WNA)
 
 没有报错的话可以安装库：
 
@@ -65,6 +65,8 @@ make install
 ```
 
 # 基于哈希表的同步算法
+
+## 设计思路
 
 libxml2库解析后得到的是树状结构（多叉树）的数据，无法直接根据元素的name找到元素的地址，因此修改、增删时需要先后遍历模版xml和目标xml，时间复杂度为O(n^2)，性能较差，因此考虑使用哈希表，建立从元素name到元素地址的映射，这样就可以根据元素name直接找到元素地址，同步算法的时间复杂度为O(n)（实际性能略低，因为使用了链式地址来解决哈希冲突的问题）
 
@@ -93,6 +95,114 @@ typedef struct {
 } HashMapChaining;
 ```
 
+通过遍历xml的树状结构来构建哈希表：
+
+```C
+// 创建xml文件的哈希表
+HashMapChaining* xml_to_hash(HashMapChaining* hashMap, const xmlNode* node){
+    if(!node || node->type!=XML_ELEMENT_NODE)
+        return NULL;
+
+    put(hashMap, node->name, node);
+
+    // 递归处理子节点
+    xmlNode* child = node->children;
+    while (child != NULL) {
+        xml_to_hash(hashMap, child);
+        child = child->next;
+    }
+}
+```
+
+## 算法实现
+
+### 元素同步数据
+
+由于需要同步的参数是少数，因此将需要同步参数的元素的name写在指定文件中，同步时只需要读取这些name即可，不需要遍历xml，时间复杂度可以近似看做O(1)
+
+```C
+// 同步指定的XML元素数据
+void sync_value(HashMapChaining* src_hashMap, HashMapChaining* dst_hashMap, const char* special_enum) {
+    if(!src_hashMap || !dst_hashMap)
+        return;
+    
+    for (int i = 0; i < dst_hashMap->capacity; i++) {
+        Node *cur = dst_hashMap->buckets[i];
+        while (cur) {
+            if(get(src_hashMap, cur->pair->key)!=NULL)
+                if(is_special_enum(cur->pair->key, special_enum))
+                    xmlNodeSetContent(cur->pair->val, xmlStrdup((xmlChar*)(xmlNodeGetContent(get(src_hashMap, cur->pair->key)))));
+            cur = cur->next;
+        }
+    }
+}
+```
+
+### 元素同步删除
+
+遍历目标xml，获取每个元素的name，检查模版xml是否有对应的元素，没有则删除目标xml中的元素。遍历操作时间复杂度为O(n)，检查操作时间复杂度为O(1)，因此同步删除的时间复杂度为O(n)
+
+```C
+// 同步删除元素
+void sync_delete(HashMapChaining* src_hashMap, HashMapChaining* dst_hashMap){
+    if(!src_hashMap || !dst_hashMap)
+        return;
+
+    for (int i = 0; i < dst_hashMap->capacity; i++) {
+        Node *cur = dst_hashMap->buckets[i];
+        while (cur) {
+            if(get(src_hashMap, cur->pair->key) == NULL && get(src_hashMap, cur->pair->val->parent->name)!=NULL){
+                xmlUnlinkNode(cur->pair->val);
+                xmlFreeNode(cur->pair->val);
+            }
+            cur = cur->next;
+        }
+    }
+}
+```
+
+### 元素同步增加
+
+遍历模版xml，获取每个元素的name，检查目标xml是否有对应的元素，没有则在目标xml中添加对应的元素。遍历操作时间复杂度为O(n)，检查操作时间复杂度为O(1)，因此同步增加的时间复杂度为O(n)
+
+```C
+// 同步增加元素
+void sync_add(HashMapChaining* src_hashMap, HashMapChaining* dst_hashMap){
+    if(!src_hashMap || !dst_hashMap)
+        return;
+
+    for (int i = 0; i < src_hashMap->capacity; i++) {
+        Node *cur = src_hashMap->buckets[i];
+        while (cur) {
+            if(cur->pair->val->parent->type == XML_DOCUMENT_NODE){
+                cur = cur->next;
+                continue;
+            }
+            xmlNodePtr dst_parent = get(dst_hashMap, cur->pair->val->parent->name);
+            // 只需要找到src树中新加元素子树的根元素，然后复制整个子树即可
+            if(get(dst_hashMap, cur->pair->key)==NULL && dst_parent!=NULL){
+                int child_index = get_child_index(cur->pair->val);
+                if(child_index == 1){
+                    if(getChildElementCount(cur->pair->val->parent)==1){
+                        xmlAddChild(dst_parent, xmlCopyNode(cur->pair->val, 1));
+                    }else{
+                        xmlAddPrevSibling(get_first_child(dst_parent), xmlCopyNode(cur->pair->val, 1));
+                    }
+                }else{
+                    xmlNodePtr prev_child = dst_parent->children;
+                    for(int i=0;i<child_index-1;i++){
+                        while(prev_child && prev_child->type!=XML_ELEMENT_NODE)
+                            prev_child = prev_child->next;
+                        prev_child = prev_child->next;
+                    }
+                    prev_child = prev_child->prev;
+                    xmlAddNextSibling(prev_child, xmlCopyNode(cur->pair->val, 1));
+                }
+            }
+            cur = cur->next;
+        }
+```
+
 # 使用方法
 
 静态编译(库的安装位置具体看自己的配置)：
@@ -113,5 +223,3 @@ sample.xml文件为已经修改的模版xml
 ```Shell
 ./synchronize ../resource/sync_value.txt ../resource/sample.xml ../resource/*.xml
 ```
-
-
