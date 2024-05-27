@@ -67,7 +67,7 @@
             <DSAAddr5>ec:01.0</DSAAddr5>
             <DSAAddr6>f1:01.0</DSAAddr6>
             <DSAAddr7>f6:01.0</DSAAddr7>
-        <DSAResource>
+        </DSAResource>
 
         <DPDKSharedResource>
             <!-- number of the set of shared ports and corresponding memory, maximum 4, if none, set to 0 -->
@@ -371,4 +371,3 @@
         <dciFormatUrllc>1</dciFormatUrllc>
     </pdcchCfg>
 </UeSimConfig>
-

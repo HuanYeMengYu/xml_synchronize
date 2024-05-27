@@ -96,7 +96,7 @@
             <nMimoModeUL>0</nMimoModeUL>
             <!-- ul resource allocation type. 0: not continuous; 1: continuous. SU MIMO default value is type 1. -->
             <nULAllocType>1</nULAllocType>
-        <ulmassiveMIMO>
+        </ulmassiveMIMO>
         <!--nMaxPairTrialPerSubbans is max pairing trails per subband, only for cus nMimoMode-->
         <nMaxPairTrialPerSubband>32</nMaxPairTrialPerSubband>
     </massiveMIMO>
@@ -255,4 +255,3 @@
     <Cell_Identity>1</Cell_Identity>
     <Global_gNB_ID>1</Global_gNB_ID>
 </CellConfig>
-

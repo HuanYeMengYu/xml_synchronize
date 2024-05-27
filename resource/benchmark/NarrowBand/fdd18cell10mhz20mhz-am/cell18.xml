@@ -3,256 +3,233 @@
 <!--   <COPYRIGHT_TAG>                                                                       -->
 <!--                                                                                         -->
 <CellConfig>
-    <version>23.07</version>
-    <cellId>18</cellId>
-    <nDMRSTypeAPos>3</nDMRSTypeAPos>
-    <nPhyCellId>28</nPhyCellId>
-    <nDLBandwidth>20</nDLBandwidth>
-    <nULBandwidth>20</nULBandwidth>
-    <nDLAbsFrePointA>2110000</nDLAbsFrePointA>
-    <nULAbsFrePointA>1920000</nULAbsFrePointA>
-    <nDLFftSize>4096</nDLFftSize>
-    <nULFftSize>4096</nULFftSize>
-    <nDLK0>1</nDLK0>
-    <nULK0>1</nULK0>
-    <nNrOfTxAnt>4</nNrOfTxAnt>
-    <nNrOfRxAnt>4</nNrOfRxAnt>
-    <nNrOfDLPorts>4</nNrOfDLPorts>
-    <nNrOfULPorts>4</nNrOfULPorts>
-    <nFrameDuplexType>0</nFrameDuplexType>
-    <nSubcCommon>0</nSubcCommon>
-    <nCyclicPrefix>0</nCyclicPrefix>
-    <nTddPeriod>5</nTddPeriod>
-    <slotCfg0>0,0,0,0,0,0,0,0,0,0,0,0,0,0</slotCfg0>
-    <slotCfg1>0,0,0,0,0,0,0,0,0,0,0,0,0,0</slotCfg1>
-    <slotCfg2>0,0,0,0,0,0,0,0,0,0,0,0,0,0</slotCfg2>
-    <slotCfg3>0,0,0,0,0,0,0,0,0,0,0,2,2,1</slotCfg3>
-    <slotCfg4>1,1,1,1,1,1,1,1,1,1,1,1,1,1</slotCfg4>
-    <prachCfg>
-        <nPrachConfIdx>159</nPrachConfIdx>
-        <nPrachSubcSpacing>1</nPrachSubcSpacing>
-        <nPrachZeroCorrConf>6</nPrachZeroCorrConf>
-        <nPrachRestrictSet>0</nPrachRestrictSet>
-        <nPrachRootSeqIdx>0</nPrachRootSeqIdx>
-        <nPrachFreqStart>19</nPrachFreqStart>
-        <nPrachFdm>1</nPrachFdm>
-        <nPrachSsbRach>3</nPrachSsbRach>
-        <nPrachNrofRxRU>2</nPrachNrofRxRU>
-    </prachCfg>
-    <ssbCfg>
-        <nSSBMask>1</nSSBMask>
-        <nSSBPwr>0</nSSBPwr>
-        <nSSBAbsFre>2113240</nSSBAbsFre>
-        <nSSBPeriod>2</nSSBPeriod>
-        <nSSBSubcSpacing>0</nSSBSubcSpacing>
-        <nSSBSubcOffset>0</nSSBSubcOffset>
-        <nSSBPrbOffset>8</nSSBPrbOffset>
-        <nCSS0>0</nCSS0>
-        <nCORESET0>4</nCORESET0>
-    </ssbCfg>
-    <nNumSymPdcch>3</nNumSymPdcch>
-    <Coreset>
-        <numCoreset>3</numCoreset>
-        <nFrequencyDomainResources1>0x1FFFFFFFFFFF</nFrequencyDomainResources1>
-        <nCCEToREGType1>0</nCCEToREGType1>
-        <nDmrsScramblingID1>0xFFFF</nDmrsScramblingID1>
-        <nFrequencyDomainResources2>0x1FC000000000</nFrequencyDomainResources2>
-        <nCCEToREGType2>0</nCCEToREGType2>
-        <nDmrsScramblingID2>0xFFFF</nDmrsScramblingID2>
-    </Coreset>
-    <nNumPdschTimeDomain>4</nNumPdschTimeDomain>
-    <!-- sort by symbol length -->
-    <nPdschTimeDomainSLIV0>40</nPdschTimeDomainSLIV0>
-    <nPdschTimeDomainSLIV1>54</nPdschTimeDomainSLIV1>
-    <nPdschTimeDomainSLIV2>68</nPdschTimeDomainSLIV2>
-    <nPdschTimeDomainSLIV3>82</nPdschTimeDomainSLIV3>
-    <nNumPuschTimeDomain>1</nNumPuschTimeDomain>
-    <!-- LongPUCCH -->
-    <nPuschTimeDomainSLIV0>27</nPuschTimeDomainSLIV0>
-    <!-- ShortPUCCH -->
-    <nPuschTimeDomainSLIV1>55</nPuschTimeDomainSLIV1>
-    <nPuschTimeDomainIndex>14</nPuschTimeDomainIndex>
-    <k2>4</k2>
-    <massiveMIMO>
-        <dlmassiveMIMO>
-            <!-- 0:SU 1:ZFS 2:BFS 3:CUS 4:ZFS CPX 5:BFS CPX -->
-            <nMimoMode>0</nMimoMode>
-            <!-- DL SU MIMO Max layer of cell is 4. max 4 layer per UE. DL MU MIMO max layer of cell is 16, max 1 layer per UE-->
-            <!--nMaxLayer is max dl layer of cell-->
-            <nMaxLayer>4</nMaxLayer>
-            <!--nMaxLayerDLPerUE is max dl layer of UE-->
-            <nMaxLayerDLPerUE>4</nMaxLayerDLPerUE>
-            <!-- only for zfs -->
-            <nSubBand>3</nSubBand>
-        </dlmassiveMIMO>
-
-        <ulmassiveMIMO>
-            <!-- UL SU MIMO Max layer of cell is 2. max 2 layer per UE. UL MU MIMO max layer of cell is 8, max 1 layer per UE-->
-            <!--nMaxLayerUL is max ul layer of cell-->
-            <nMaxLayerUL>2</nMaxLayerUL>
-            <!--nMaxLayerULPerUE is max ul layer of UE-->
-            <nMaxLayerULPerUE>2</nMaxLayerULPerUE>
-            <!-- 0:SU MiMO 1:MU MIMO -->
-            <nMimoModeUL>0</nMimoModeUL>
-            <!-- ul resource allocation type. 0: not continuous; 1: continuous. SU MIMO default value is type 1. -->
-            <nULAllocType>1</nULAllocType>
-        <ulmassiveMIMO>
-        <!--nMaxPairTrialPerSubbans is max pairing trails per subband, only for cus nMimoMode-->
-        <nMaxPairTrialPerSubband>32</nMaxPairTrialPerSubband>
-    </massiveMIMO>
-    <nUlSchedMode>0</nUlSchedMode>
-    <!--0: More scheduled UEs 1: More Throughput-->
-    <nRbAlocPref>1</nRbAlocPref>
-    <enableDciCheckBeforeUlSch>0</enableDciCheckBeforeUlSch>
-    <enableStats>0</enableStats>
-    <nMcsTable>0</nMcsTable>
-    <nMcsTableUL>0</nMcsTableUL>
-    <nMcs>25</nMcs>
-    <nMcsUL>28</nMcsUL>
-    <numDmrsAddtional>0</numDmrsAddtional>
-    <adrForgetFactor>99</adrForgetFactor>
-    <enablePucch>1</enablePucch>
-    <enableSr>1</enableSr>
-    <enableCsi>1</enableCsi>
-    <pucchCfg>
-        <!-- the max is 160 when u = 1 -->
-        <srPeriod>160</srPeriod>
-        <pucchConfigCommon>12</pucchConfigCommon>
-        <startingPRBPucch0>6</startingPRBPucch0> 
-        <startingPRBPucch1>2</startingPRBPucch1>
-        <startingPRBPucch2>31</startingPRBPucch2>
-        <startingPRBPucch3>3</startingPRBPucch3>
-        <nrofPRBsPucch0>24</nrofPRBsPucch0>
-        <nrofPRBsPucch2>64</nrofPRBsPucch2>
-        <nrofPRBsPucch3>16</nrofPRBsPucch3>
-        <!-- {1, 2} -->
-        <numPRBsPerResPucch2Set1>2</numPRBsPerResPucch2Set1>
-        <nrofSymbolsFormat0>2</nrofSymbolsFormat0>
-        <nrofSymbolsFormat2>2</nrofSymbolsFormat2>
-        <nrofSymbolsFormat3>7</nrofSymbolsFormat3>
-        <!-- {zeroDot08, zeroDot15, zeroDot25, zeroDot35, zeroDot45, zeroDot60, zeroDot80} -->
-        <maxCodeRate>1</maxCodeRate>
-        <dlDataToULACKList>1,2,3,4,5,6,7,8</dlDataToULACKList>
-    </pucchCfg>
-    <pdcchCfg>
-        <nSearchSpace>5</nSearchSpace>
-        <searchSpaceType0>0</searchSpaceType0>
-        <searchSpaceType1>1</searchSpaceType1>
-        <searchSpaceType2>1</searchSpaceType2>
-        <searchSpaceType3>1</searchSpaceType3>
-        <searchSpaceType4>1</searchSpaceType4>
-        <coreSetId0>0</coreSetId0>
-        <coreSetId1>1</coreSetId1>
-        <coreSetId2>1</coreSetId2>
-        <coreSetId3>1</coreSetId3>
-        <coreSetId4>2</coreSetId4>
-        <nrofCandidates0>8,6,4,2,1</nrofCandidates0>
-        <nrofCandidates1>5,4,4,2,2</nrofCandidates1>
-        <nrofCandidates2>6,8,3,1,1</nrofCandidates2>
-        <nrofCandidates3>5,6,4,2,1</nrofCandidates3>
-        <nrofCandidates4>8,5,2,2,1</nrofCandidates4>
-        <dciFormat0>0</dciFormat0>
-        <dciFormat1>1</dciFormat1>
-        <dciFormat2>1</dciFormat2>
-        <dciFormat3>1</dciFormat3>
-        <dciFormat4>0</dciFormat4>
-    </pdcchCfg>
-    <enableSrs>0</enableSrs>
-    <srsCfg>
-        <srsTransmissionComb>4</srsTransmissionComb>
-        <srsMaxNumCsPerCombOffset>6</srsMaxNumCsPerCombOffset>
-        <nrofSymbolsSrs>1</nrofSymbolsSrs>
-        <nRepetition>1</nRepetition>
-        <bSrs>0</bSrs>
-        <cSrs>62</cSrs>
-        <nShift>0</nShift>
-        <nRrc>0</nRrc>
-        <nTsrs>320</nTsrs>
-        <nResourceUsage>3</nResourceUsage>
-        <nStartPos>0</nStartPos>
-    </srsCfg>
-    <enableCsiRs>0</enableCsiRs>
-    <csirsCfg>
-        <csirsCat>0</csirsCat>
-        <nrofResSet>4</nrofResSet>
-        <csirsPeriod0>160</csirsPeriod0>
-        <csirsPeriod1>160</csirsPeriod1>
-        <csirsPeriod2>160</csirsPeriod2>
-        <csirsPeriod3>160</csirsPeriod3>
-        <startRb0>0</startRb0>
-        <startRb1>0</startRb1>
-        <startRb2>0</startRb2>
-        <startRb3>0</startRb3>
-        <nrofRb0>272</nrofRb0>
-        <nrofRb1>272</nrofRb1>
-        <nrofRb2>272</nrofRb2>
-        <nrofRb3>272</nrofRb3>
-        <nrofRes0>1</nrofRes0>
-        <nrofRes1>1</nrofRes1>
-        <nrofRes2>1</nrofRes2>
-        <nrofRes3>1</nrofRes3>
-        <csirsOffset0>0</csirsOffset0>
-        <csirsOffset1>40</csirsOffset1>
-        <csirsOffset2>80</csirsOffset2>
-        <csirsOffset3>120</csirsOffset3>
-        <nRow0>4</nRow0>
-        <nRow1>8</nRow1>
-        <nRow2>12</nRow2>
-        <nRow3>3</nRow3>
-        <kbar0>2</kbar0>
-        <kbar1>12</kbar1>
-        <kbar2>30</kbar2>
-        <kbar3>4</kbar3>
-        <!-- sym 12 and 13 for now -->
-        <symLZero0>13</symLZero0>
-        <symLZero1>12</symLZero1>
-        <symLZero2>12</symLZero2>
-        <symLZero3>13</symLZero3>
-        <nCsirsPortType>2</nCsirsPortType>
-        <supportedCsirsPort>2,4,8,16,0,0,0,0</supportedCsirsPort>
-        <pdschOverlap>0</pdschOverlap>
-    </csirsCfg>
-    <!--  UM-0, AM-1  -->
-    <enableRlcAm>1</enableRlcAm>
-    <rlcAmCfg>
-        <snFieldLength>18</snFieldLength>
-        <tPollRetransmit>35</tPollRetransmit>
-        <pollPdu>32</pollPdu>
-        <pollByte>50000</pollByte>
-        <maxRetxThreshold>16</maxRetxThreshold>
-        <tReassembly>75</tReassembly>
-        <tStatusProhibit>50</tStatusProhibit>
-        <winSizeSrb>64</winSizeSrb>
-        <winSizeDrb>2048</winSizeDrb>
-    </rlcAmCfg>
-    <!-- 1:enable DSA for HW memcpy. 0:disable DSA for SW memcpy -->
-    <enableDSA>0</enableDSA>
-    <!-- 1:enable for UL SU MiMO. 0: diable for UL MU MIMO -->
-    <enableUlHarq>1</enableUlHarq>
-    <enableDlHarq>1</enableDlHarq>
-    <nNumDummyUe>400</nNumDummyUe>
-    <nNumDummyUeGbr1>0</nNumDummyUeGbr1>
-    <nNumDummyUeGbr2>0</nNumDummyUeGbr2>
-    <nNumDummyUeUrllc>0</nNumDummyUeUrllc>
-    <nUrllcCapable>0</nUrllcCapable>
-    <nUrllcMiniSlotMask>257</nUrllcMiniSlotMask>
-    <nUrllcRBStart>224</nUrllcRBStart>
-    <ConfiguredGrant>
-        <!-- 0:CG disable, 1:CG type1, 2:CG type2, 3:Mixed CG type-->
-        <CGType>3</CGType>
-        <!-- unit is symbol in periodicity of 38331-->
-        <periodicity>140</periodicity>
-        <!-- L of RIV in 6.1.2.2.2 in 38214-->
-        <rbSize>3</rbSize>
-    </ConfiguredGrant>
-    <SemiPersistentScheduling>
-        <!-- 0:SPS disable, 1:SPS enable, 2: Mixed SPS -->
-        <SPSFlag>2</SPSFlag>
-        <!-- unit is ms-->
-        <spsperiodicity>10</spsperiodicity>
-        <spsrbSize>3</spsrbSize>
-    </SemiPersistentScheduling>
-    <Cell_Identity>0</Cell_Identity>
-    <Global_gNB_ID>0</Global_gNB_ID>
+  <add1>666</add1>
+  <version>23.07</version>
+  <cellId>18</cellId>
+  <add2>666</add2>
+  <nDMRSTypeAPos>666</nDMRSTypeAPos>
+  <nPhyCellId>28</nPhyCellId>
+  <nULBandwidth>20</nULBandwidth>
+  <nDLAbsFrePointA>2110000</nDLAbsFrePointA>
+  <nULAbsFrePointA>1920000</nULAbsFrePointA>
+  <nDLFftSize>4096</nDLFftSize>
+  <nULFftSize>4096</nULFftSize>
+  <nDLK0>1</nDLK0>
+  <nULK0>1</nULK0>
+  <nNrOfTxAnt>4</nNrOfTxAnt>
+  <nNrOfRxAnt>4</nNrOfRxAnt>
+  <nNrOfDLPorts>4</nNrOfDLPorts>
+  <nNrOfULPorts>4</nNrOfULPorts>
+  <nFrameDuplexType>0</nFrameDuplexType>
+  <nSubcCommon>0</nSubcCommon>
+  <nCyclicPrefix>0</nCyclicPrefix>
+  <nTddPeriod>5</nTddPeriod>
+  <slotCfg0>6,6,6,0,0,0,0,0,0,0,0,0,0,0</slotCfg0>
+  <slotCfg2>0,0,0,0,0,0,0,0,0,0,0,0,0,0</slotCfg2>
+  <slotCfg3>0,0,0,0,0,0,0,0,0,0,0,2,2,1</slotCfg3>
+  <slotCfg4>1,1,1,1,1,1,1,1,1,1,1,1,1,1</slotCfg4>
+  <ssbCfg>
+    <nSSBMask>666</nSSBMask>
+    <add3>666</add3>
+    <nSSBPwr>0</nSSBPwr>
+    <nSSBAbsFre>2113240</nSSBAbsFre>
+    <nSSBPeriod>2</nSSBPeriod>
+    <nSSBSubcSpacing>0</nSSBSubcSpacing>
+    <nSSBSubcOffset>0</nSSBSubcOffset>
+    <nSSBPrbOffset>8</nSSBPrbOffset>
+    <nCSS0>0</nCSS0>
+    <nCORESET0>4</nCORESET0>
+  </ssbCfg>
+  <nNumSymPdcch>3</nNumSymPdcch>
+  <Coreset>
+    <numCoreset>3</numCoreset>
+    <nFrequencyDomainResources1>0x1FFFFFFFFFFF</nFrequencyDomainResources1>
+    <nCCEToREGType1>0</nCCEToREGType1>
+    <nDmrsScramblingID1>0xFFFF</nDmrsScramblingID1>
+    <nFrequencyDomainResources2>0x1FC000000000</nFrequencyDomainResources2>
+    <nCCEToREGType2>0</nCCEToREGType2>
+    <nDmrsScramblingID2>0xFFFF</nDmrsScramblingID2>
+  </Coreset>
+  <nNumPdschTimeDomain>4</nNumPdschTimeDomain>
+  <!-- sort by symbol length -->
+  <nPdschTimeDomainSLIV0>40</nPdschTimeDomainSLIV0>
+  <nPdschTimeDomainSLIV1>54</nPdschTimeDomainSLIV1>
+  <nPdschTimeDomainSLIV2>68</nPdschTimeDomainSLIV2>
+  <nPdschTimeDomainSLIV3>82</nPdschTimeDomainSLIV3>
+  <nNumPuschTimeDomain>1</nNumPuschTimeDomain>
+  <!-- LongPUCCH -->
+  <nPuschTimeDomainSLIV0>27</nPuschTimeDomainSLIV0>
+  <!-- ShortPUCCH -->
+  <nPuschTimeDomainSLIV1>55</nPuschTimeDomainSLIV1>
+  <nPuschTimeDomainIndex>14</nPuschTimeDomainIndex>
+  <k2>4</k2>
+  <massiveMIMO>
+    <ulmassiveMIMO>
+      <!-- UL SU MIMO Max layer of cell is 2. max 2 layer per UE. UL MU MIMO max layer of cell is 8, max 1 layer per UE-->
+      <!--nMaxLayerUL is max ul layer of cell-->
+      <nMaxLayerUL>2</nMaxLayerUL>
+      <!--nMaxLayerULPerUE is max ul layer of UE-->
+      <nMaxLayerULPerUE>2</nMaxLayerULPerUE>
+      <!-- 0:SU MiMO 1:MU MIMO -->
+      <nMimoModeUL>0</nMimoModeUL>
+      <!-- ul resource allocation type. 0: not continuous; 1: continuous. SU MIMO default value is type 1. -->
+      <nULAllocType>1</nULAllocType>
+    </ulmassiveMIMO>
+    <!--nMaxPairTrialPerSubbans is max pairing trails per subband, only for cus nMimoMode-->
+    <nMaxPairTrialPerSubband>32</nMaxPairTrialPerSubband>
+  </massiveMIMO>
+  <nUlSchedMode>0</nUlSchedMode>
+  <!--0: More scheduled UEs 1: More Throughput-->
+  <nRbAlocPref>1</nRbAlocPref>
+  <enableDciCheckBeforeUlSch>0</enableDciCheckBeforeUlSch>
+  <enableStats>0</enableStats>
+  <nMcsTable>0</nMcsTable>
+  <nMcsTableUL>0</nMcsTableUL>
+  <nMcs>25</nMcs>
+  <nMcsUL>28</nMcsUL>
+  <numDmrsAddtional>0</numDmrsAddtional>
+  <adrForgetFactor>99</adrForgetFactor>
+  <enablePucch>1</enablePucch>
+  <enableSr>1</enableSr>
+  <enableCsi>1</enableCsi>
+  <pucchCfg>
+    <!-- the max is 160 when u = 1 -->
+    <srPeriod>160</srPeriod>
+    <pucchConfigCommon>12</pucchConfigCommon>
+    <startingPRBPucch0>6</startingPRBPucch0>
+    <startingPRBPucch1>2</startingPRBPucch1>
+    <startingPRBPucch2>31</startingPRBPucch2>
+    <startingPRBPucch3>3</startingPRBPucch3>
+    <nrofPRBsPucch0>24</nrofPRBsPucch0>
+    <nrofPRBsPucch2>64</nrofPRBsPucch2>
+    <nrofPRBsPucch3>16</nrofPRBsPucch3>
+    <!-- {1, 2} -->
+    <numPRBsPerResPucch2Set1>2</numPRBsPerResPucch2Set1>
+    <nrofSymbolsFormat0>2</nrofSymbolsFormat0>
+    <nrofSymbolsFormat2>2</nrofSymbolsFormat2>
+    <nrofSymbolsFormat3>7</nrofSymbolsFormat3>
+    <!-- {zeroDot08, zeroDot15, zeroDot25, zeroDot35, zeroDot45, zeroDot60, zeroDot80} -->
+    <maxCodeRate>1</maxCodeRate>
+    <dlDataToULACKList>1,2,3,4,5,6,7,8</dlDataToULACKList>
+  </pucchCfg>
+  <pdcchCfg>
+    <nSearchSpace>5</nSearchSpace>
+    <searchSpaceType0>0</searchSpaceType0>
+    <searchSpaceType1>1</searchSpaceType1>
+    <searchSpaceType2>1</searchSpaceType2>
+    <searchSpaceType3>1</searchSpaceType3>
+    <searchSpaceType4>1</searchSpaceType4>
+    <coreSetId0>0</coreSetId0>
+    <coreSetId1>1</coreSetId1>
+    <coreSetId2>1</coreSetId2>
+    <coreSetId3>1</coreSetId3>
+    <coreSetId4>2</coreSetId4>
+    <nrofCandidates0>8,6,4,2,1</nrofCandidates0>
+    <nrofCandidates1>5,4,4,2,2</nrofCandidates1>
+    <nrofCandidates2>6,8,3,1,1</nrofCandidates2>
+    <nrofCandidates3>5,6,4,2,1</nrofCandidates3>
+    <nrofCandidates4>8,5,2,2,1</nrofCandidates4>
+    <dciFormat0>0</dciFormat0>
+    <dciFormat1>1</dciFormat1>
+    <dciFormat2>1</dciFormat2>
+    <dciFormat3>1</dciFormat3>
+    <dciFormat4>0</dciFormat4>
+  </pdcchCfg>
+  <enableSrs>0</enableSrs>
+  <srsCfg>
+    <srsTransmissionComb>4</srsTransmissionComb>
+    <srsMaxNumCsPerCombOffset>6</srsMaxNumCsPerCombOffset>
+    <nrofSymbolsSrs>1</nrofSymbolsSrs>
+    <nRepetition>1</nRepetition>
+    <bSrs>0</bSrs>
+    <cSrs>62</cSrs>
+    <nShift>0</nShift>
+    <nRrc>0</nRrc>
+    <nTsrs>320</nTsrs>
+    <nResourceUsage>3</nResourceUsage>
+    <nStartPos>0</nStartPos>
+  </srsCfg>
+  <enableCsiRs>0</enableCsiRs>
+  <csirsCfg>
+    <csirsCat>0</csirsCat>
+    <nrofResSet>4</nrofResSet>
+    <csirsPeriod0>160</csirsPeriod0>
+    <csirsPeriod1>160</csirsPeriod1>
+    <csirsPeriod2>160</csirsPeriod2>
+    <csirsPeriod3>160</csirsPeriod3>
+    <startRb0>0</startRb0>
+    <startRb1>0</startRb1>
+    <startRb2>0</startRb2>
+    <startRb3>0</startRb3>
+    <nrofRb0>272</nrofRb0>
+    <nrofRb1>272</nrofRb1>
+    <nrofRb2>272</nrofRb2>
+    <nrofRb3>272</nrofRb3>
+    <nrofRes0>1</nrofRes0>
+    <nrofRes1>1</nrofRes1>
+    <nrofRes2>1</nrofRes2>
+    <nrofRes3>1</nrofRes3>
+    <csirsOffset0>0</csirsOffset0>
+    <csirsOffset1>40</csirsOffset1>
+    <csirsOffset2>80</csirsOffset2>
+    <csirsOffset3>120</csirsOffset3>
+    <nRow0>4</nRow0>
+    <nRow1>8</nRow1>
+    <nRow2>12</nRow2>
+    <nRow3>3</nRow3>
+    <kbar0>2</kbar0>
+    <kbar1>12</kbar1>
+    <kbar2>30</kbar2>
+    <kbar3>4</kbar3>
+    <!-- sym 12 and 13 for now -->
+    <symLZero0>13</symLZero0>
+    <symLZero1>12</symLZero1>
+    <symLZero2>12</symLZero2>
+    <symLZero3>13</symLZero3>
+    <nCsirsPortType>2</nCsirsPortType>
+    <supportedCsirsPort>2,4,8,16,0,0,0,0</supportedCsirsPort>
+    <pdschOverlap>0</pdschOverlap>
+  </csirsCfg>
+  <!--  UM-0, AM-1  -->
+  <enableRlcAm>1</enableRlcAm>
+  <rlcAmCfg>
+    <snFieldLength>18</snFieldLength>
+    <tPollRetransmit>35</tPollRetransmit>
+    <pollPdu>32</pollPdu>
+    <pollByte>50000</pollByte>
+    <maxRetxThreshold>16</maxRetxThreshold>
+    <tReassembly>75</tReassembly>
+    <tStatusProhibit>50</tStatusProhibit>
+    <winSizeSrb>64</winSizeSrb>
+    <winSizeDrb>2048</winSizeDrb>
+  </rlcAmCfg>
+  <!-- 1:enable DSA for HW memcpy. 0:disable DSA for SW memcpy -->
+  <enableDSA>0</enableDSA>
+  <!-- 1:enable for UL SU MiMO. 0: diable for UL MU MIMO -->
+  <enableUlHarq>1</enableUlHarq>
+  <enableDlHarq>1</enableDlHarq>
+  <nNumDummyUe>400</nNumDummyUe>
+  <nNumDummyUeGbr1>0</nNumDummyUeGbr1>
+  <nNumDummyUeGbr2>0</nNumDummyUeGbr2>
+  <nNumDummyUeUrllc>0</nNumDummyUeUrllc>
+  <nUrllcCapable>0</nUrllcCapable>
+  <nUrllcMiniSlotMask>257</nUrllcMiniSlotMask>
+  <nUrllcRBStart>224</nUrllcRBStart>
+  <ConfiguredGrant>
+    <!-- 0:CG disable, 1:CG type1, 2:CG type2, 3:Mixed CG type-->
+    <CGType>3</CGType>
+    <!-- unit is symbol in periodicity of 38331-->
+    <periodicity>140</periodicity>
+    <!-- L of RIV in 6.1.2.2.2 in 38214-->
+    <rbSize>3</rbSize>
+  </ConfiguredGrant>
+  <SemiPersistentScheduling>
+    <!-- 0:SPS disable, 1:SPS enable, 2: Mixed SPS -->
+    <SPSFlag>2</SPSFlag>
+    <!-- unit is ms-->
+    <spsperiodicity>10</spsperiodicity>
+    <spsrbSize>3</spsrbSize>
+  </SemiPersistentScheduling>
+  <Cell_Identity>0</Cell_Identity>
+  <Global_gNB_ID>0</Global_gNB_ID>
 </CellConfig>
-
