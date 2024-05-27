@@ -35,7 +35,7 @@ cd libxml2-xxx
 
 成功生成配置文件：
 
-![img](https://diangroup.feishu.cn/space/api/box/stream/download/asynccode/?code=YThlODdiNGU0MDNjYTM1MTEyYjc0NmJmYTQwM2M5N2ZfVjJtZDdUMzB1dUhWWThnSlQ2QjRhaG0zVXZZUmJQUFlfVG9rZW46RkdMYWJZR1Vnb3B2cVV4TGFycGNsWXRObkpPXzE3MTYxODg1MjA6MTcxNjE5MjEyMF9WNA)
+![img](https://diangroup.feishu.cn/space/api/box/stream/download/asynccode/?code=ODY3ZGEyZTBhM2MxMTFhOWFlY2M2ZDIwYTJhYTc5MmVfVWVlSlp6V0ZUenRQa214S1N6TDBCYkR0REQ0S29NRTJfVG9rZW46RkdMYWJZR1Vnb3B2cVV4TGFycGNsWXRObkpPXzE3MTY4MDIwNjM6MTcxNjgwNTY2M19WNA)
 
 然后你可以配置并构建库：
 
@@ -46,9 +46,9 @@ make
 
 成功构建库：
 
-![img](https://diangroup.feishu.cn/space/api/box/stream/download/asynccode/?code=YjYyNDUwZmMwY2VhMzkzZDUxMGI4NGM2MDE3MWQzZjZfRHMyelZkeGRtZzMyVEFnVERHbUJuRTIxYTdPMFhBa0lfVG9rZW46TUVBWWI4MnJJb01OSHp4dTBNaWNBU2VmbmhnXzE3MTYxODg1MjA6MTcxNjE5MjEyMF9WNA)
+![img](https://diangroup.feishu.cn/space/api/box/stream/download/asynccode/?code=YWU1N2Y4YzFlNjAzNDA1OWZiMmJkNDhlYTczOTM5YjFfdktDRkNOSW1EQkh0Vld3SVE3bmxxY2h3eWl3WEdQd3RfVG9rZW46TUVBWWI4MnJJb01OSHp4dTBNaWNBU2VmbmhnXzE3MTY4MDIwNjM6MTcxNjgwNTY2M19WNA)
 
-![img](https://diangroup.feishu.cn/space/api/box/stream/download/asynccode/?code=NTYzZGQzZmY0MjBmOTc3MjUwODhkOWQ0MzBmOGQwMGRfVVowa1o4TEFYSFdhOTN0T0hYRnBMRTdBdDVHVElrOWlfVG9rZW46RU5OUmJYcmhwb3Bwa1Z4Tk5jZ2NEaWdQbkNmXzE3MTYxODg1MjA6MTcxNjE5MjEyMF9WNA)
+![img](https://diangroup.feishu.cn/space/api/box/stream/download/asynccode/?code=MmFiOWVhZDEwMDMwMWQzNmY5OGI2MmE4MzAyNGM5NDRfTWlxN1lsUHBLU0FPdHdYbjM2QURaTXBOdDVrOE1ORTJfVG9rZW46RU5OUmJYcmhwb3Bwa1Z4Tk5jZ2NEaWdQbkNmXzE3MTY4MDIwNjM6MTcxNjgwNTY2M19WNA)
 
 现在你可以运行测试套件来检查正确性：
 
@@ -56,7 +56,7 @@ make
 make check
 ```
 
-![img](https://diangroup.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWIyOTBkOGU0OGM0NGVlMjE2ZjQxNjUzNmI5OWU2Y2RfUHBqMjdCdHBzeVlHUExOa0lqWjVla1RJaGxzTnFqbmxfVG9rZW46Vjdra2JnRXd6bzY2NDl4NGdUWWNYNkJQbmVjXzE3MTYxODg1MjA6MTcxNjE5MjEyMF9WNA)
+![img](https://diangroup.feishu.cn/space/api/box/stream/download/asynccode/?code=YWQ5MjhmMWQwYjliZGQ5OTMzZTVhNTZhYmU5ZjMwMTVfZ3ZjR3J3WXJqeXJsM056TGF5Nm9FVmwxR0dyVmpaR3ZfVG9rZW46Vjdra2JnRXd6bzY2NDl4NGdUWWNYNkJQbmVjXzE3MTY4MDIwNjM6MTcxNjgwNTY2M19WNA)
 
 没有报错的话可以安装库：
 
@@ -203,23 +203,101 @@ void sync_add(HashMapChaining* src_hashMap, HashMapChaining* dst_hashMap){
         }
 ```
 
+# 递归同步指定目录
+
+在同步文件时，如果有大量文件需要同步，不可能一个一个文件去同步，需要指定根目录后自动同步该目录下所有指定的文件。
+
+该函数**获取指定目录下所有与指定模版文件同名的文件的相对路径**
+
+```C
+#define MAX_FILES 1024
+#define MAX_PATH_LENGTH 1024
+
+// 根据指定的模版文件和指定要同步的根目录获取需要同步的所有文件的路径
+void find_files(const char *sample_filename, const char *base_path, char found_files[MAX_FILES][MAX_PATH_LENGTH], int *file_count) {
+    DIR* dir = opendir(base_path[0] == '\0' ? "." : base_path);
+    if (dir == NULL) {
+        perror("opendir");
+        return;
+    }
+
+    struct dirent *entry;
+    while ((entry = readdir(dir)) != NULL) {
+        // 忽略 . 和 ..
+        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) {
+            continue;
+        }
+
+        // 构建完整的相对路径
+        char path[MAX_PATH_LENGTH];
+        if (base_path[0] == '\0') {
+            snprintf(path, sizeof(path), "%s", entry->d_name);
+        } else {
+            snprintf(path, sizeof(path), "%s/%s", base_path, entry->d_name);
+        }
+
+        // 构建完整的绝对路径
+        char full_path[MAX_PATH_LENGTH];
+        if (base_path[0] == '\0') {
+            snprintf(full_path, sizeof(full_path), "./%s", entry->d_name);
+        } else {
+            snprintf(full_path, sizeof(full_path), "%s/%s", base_path, entry->d_name);
+        }
+
+        struct stat statbuf;
+        if (stat(full_path, &statbuf) == 0) {
+            if (S_ISDIR(statbuf.st_mode)) {
+                // 如果是目录，递归调用
+                find_files(sample_filename, path, found_files, file_count);
+            } else if (S_ISREG(statbuf.st_mode)) {
+                // 如果是常规文件，检查文件名
+                if (strcmp(entry->d_name, sample_filename) == 0) {
+                    if (*file_count < MAX_FILES) {
+                        strncpy(found_files[*file_count], path, MAX_PATH_LENGTH);
+                        (*file_count)++;
+                    } else {
+                        fprintf(stderr, "Exceeded maximum file count\n");
+                        closedir(dir);
+                        return;
+                    }
+                }
+            }
+        } else {
+            perror("stat");
+        }
+    }
+
+    closedir(dir);
+}
+```
+
 # 使用方法
 
-静态编译(库的安装位置具体看自己的配置)：
+## 静态编译(库的安装位置具体看自己的配置)：
 
 ```Shell
 cd xml_synchronize
 gcc -static ./include/* ./src/* -o ./bin/synchronize -L/usr/local/lib -lxml2 -I/usr/local/include/libxml2/ -lm
 ```
 
-运行：
+## 运行
 
-sync_value.txt文件中指定了需要同步数据的元素名称
+第一个参数为sync_value.txt文件，指定了需要同步数据的元素名称
 
-sample.xml文件为已经修改的模版xml
+第二个参数为sample.xml文件，是已经修改的模版xml；
 
-之后的参数（可以是多个）是指定所有要同步的xml文件
+之后的参数（可以是多个）是指定要同步的xml文件或目录（没有顺序要求）
+
+eg：
 
 ```Shell
-./synchronize ../resource/sync_value.txt ../resource/sample.xml ../resource/*.xml
+./synchronize ../resource/sync_value.txt ../resource/cell1.xml ../resource/cell2.xml  ../resource/benchmark/
 ```
+
+`../resource/sync_value.txt`内指定了需要同步哪些标签的数据
+
+`../resource/cell1.xml`为模版文件
+
+`../resource/cell2.xml`为需要同步的文件
+
+`../resource/benchmark/`为需要同步的目录，该目录下所有的cell1.xml文件都会被同步
