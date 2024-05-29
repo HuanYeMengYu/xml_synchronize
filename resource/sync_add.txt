@@ -1,3 +1,0 @@
-add1 CellConfig CellConfig
-add2 CellConfig cellId
-add3 ssbCfg nSSBMask

@@ -1,4 +1,0 @@
-nDLBandwidth
-slotCfg1
-prachCfg
-dlmassiveMIMO
